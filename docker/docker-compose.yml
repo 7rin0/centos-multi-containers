@@ -42,8 +42,11 @@ services:
       - prodnetwork
     environment:
       container: docker
-    expose:
+    ports:
       - "180:80"
+      - "11211:11211"
+    expose:
+      - "80"
       - "11211"
     #depends_on:
     volumes:
