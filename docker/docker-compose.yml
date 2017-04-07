@@ -16,6 +16,8 @@ services:
     #ports:
     networks:
       - prodnetwork
+    environment:
+      container: docker
     #depends_on:
     volumes:
       - ./containers/application:/var/application
@@ -26,6 +28,8 @@ services:
     #ports:
     networks:
       - prodnetwork
+    environment:
+      container: docker
     #depends_on:
     volumes:
       - ./containers/search:/var/search
@@ -36,6 +40,11 @@ services:
     #ports:
     networks:
       - prodnetwork
+    environment:
+      container: docker
+    expose:
+      - "180:80"
+      - "11211"
     #depends_on:
     volumes:
       - ./containers/cache:/var/cache
@@ -46,6 +55,8 @@ services:
     #ports:
     networks:
       - prodnetwork
+    environment:
+      container: docker
     #depends_on:
     volumes:
       - ./containers/database:/var/database
