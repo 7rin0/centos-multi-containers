@@ -1,0 +1,41 @@
+version: '2'
+
+# Network.
+networks:
+  prodnetwork:
+    driver: bridge
+
+# Volumes.
+
+# Services.
+services:
+  # Application
+  centos_application:
+    image: centos:7
+    command: tail -f /dev/null
+    #ports:
+    networks:
+      - prodnetwork
+    #depends_on:
+    volumes:
+      - ./containers/application:/var/application
+  # Search
+  centos_search:
+    image: centos:7
+    command: tail -f /dev/null
+    #ports:
+    networks:
+      - prodnetwork
+    #depends_on:
+    volumes:
+      - ./containers/search:/var/search
+  # Cache
+  centos_cache:
+    image: centos:7
+    command: tail -f /dev/null
+    #ports:
+    networks:
+      - prodnetwork
+    #depends_on:
+    volumes:
+      - ./containers/cache:/var/cache
