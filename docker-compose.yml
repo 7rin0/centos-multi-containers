@@ -12,7 +12,7 @@ services:
   # Application
   centos_application:
     image: centos:7
-    command: tail -f /dev/null
+    command: bash /var/application/bootstrap.sh
     #ports:
     networks:
       - prodnetwork
@@ -22,7 +22,7 @@ services:
   # Search
   centos_search:
     image: centos:7
-    command: tail -f /dev/null
+    command: bash /var/search/bootstrap.sh
     #ports:
     networks:
       - prodnetwork
@@ -32,10 +32,20 @@ services:
   # Cache
   centos_cache:
     image: centos:7
-    command: tail -f /dev/null
+    command: bash /var/cache/bootstrap.sh
     #ports:
     networks:
       - prodnetwork
     #depends_on:
     volumes:
       - ./containers/cache:/var/cache
+  # Database
+  centos_database:
+    image: centos:7
+    command: bash /var/database/bootstrap.sh
+    #ports:
+    networks:
+      - prodnetwork
+    #depends_on:
+    volumes:
+      - ./containers/database:/var/database

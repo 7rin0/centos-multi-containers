@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Containers.
+CONTAINERS_NAME="docker_centos_cache_1 docker_centos_application_1 docker_centos_search_1 docker_centos_database_1"
+
+# Stop all containers
+docker stop $CONTAINERS_NAME
+# Delete all containers
+docker rm -f $CONTAINERS_NAME
+# Delete all images
+docker rmi -f $CONTAINERS_NAME
