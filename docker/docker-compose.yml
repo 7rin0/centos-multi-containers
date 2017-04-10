@@ -13,23 +13,49 @@ services:
   centos_application:
     image: centos:7
     command: bash /var/application/bootstrap.sh
-    #ports:
     networks:
       - prodnetwork
     environment:
       container: docker
+    # ports:
+    #   # Apache.
+    #   - "280:80"
+    # expose:
+    #   - "80"
     #depends_on:
     volumes:
       - ./containers/application:/var/application
+  # Application
+  centos_web_server:
+    image: centos:7
+    command: bash /var/web_server/bootstrap.sh
+    networks:
+      - prodnetwork
+    environment:
+      container: docker
+    ports:
+      # Apache.
+      - "280:80"
+      - "28080:8080"
+    expose:
+      - "80"
+      - "8080"
+    #depends_on:
+    volumes:
+      - ./containers/web_server:/var/web_server
   # Search
   centos_search:
     image: centos:7
     command: bash /var/search/bootstrap.sh
-    #ports:
     networks:
       - prodnetwork
     environment:
       container: docker
+    ports:
+      # SOLR.
+      - "18983:8983"
+    expose:
+      - "8983"
     #depends_on:
     volumes:
       - ./containers/search:/var/search
@@ -37,13 +63,14 @@ services:
   centos_cache:
     image: centos:7
     command: bash /var/cache/bootstrap.sh
-    #ports:
     networks:
       - prodnetwork
     environment:
       container: docker
     ports:
+      # Varnish.
       - "180:80"
+      # Memcached.
       - "11211:11211"
     expose:
       - "80"
@@ -55,11 +82,19 @@ services:
   centos_database:
     image: centos:7
     command: bash /var/database/bootstrap.sh
-    #ports:
     networks:
       - prodnetwork
     environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: root
       container: docker
+    ports:
+      # MySQL.
+      - "13306:3306"
+    expose:
+      - "3306"
     #depends_on:
     volumes:
+      -  /var/lib/mysql
       - ./containers/database:/var/database
