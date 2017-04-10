@@ -21,6 +21,7 @@ services:
     #depends_on:
     volumes:
       - ./containers/application:/var/application
+    container_name: centos_setup_application
   # Search
   centos_search:
     image: centos:7
@@ -33,6 +34,7 @@ services:
     #depends_on:
     volumes:
       - ./containers/search:/var/search
+    container_name: centos_setup_search
   # Cache
   centos_cache:
     image: centos:7
@@ -51,6 +53,7 @@ services:
     #depends_on:
     volumes:
       - ./containers/cache:/var/cache
+    container_name: centos_setup_cache
   # Database
   centos_database:
     image: centos:7
@@ -60,6 +63,30 @@ services:
       - prodnetwork
     environment:
       container: docker
+    ports:
+      - "13306:3306"
+    expose:
+      - "3306"
     #depends_on:
     volumes:
       - ./containers/database:/var/database
+    container_name: centos_setup_database
+  # Mail
+  centos_mail:
+    image: catatnight/postfix
+    command: bash /var/mail/bootstrap.sh
+    #ports:
+    networks:
+      - prodnetwork
+    environment:
+      container: docker
+      maildomain: mail.centos-setup.server
+      smtp_user: user:pwd
+    ports:
+      - "225:25"
+    expose:
+      - "25"
+    #depends_on:
+    volumes:
+      - ./containers/mail:/var/mail
+    container_name: centos_setup_mail

@@ -5,8 +5,9 @@ echo "Start ci-cd-docker-compose installation!"
 
 # Convert scripts to Unix format
 sudo apt-get -f install
+# http://www.computerhope.com/unix/dos2unix.htm
 sudo apt-get install dos2unix -y
-dos2unix $(grep -r 'bin/bash' | cut -d':' -f1)
+dos2unix -f $(grep -r 'bin/bash' | cut -d':' -f1)
 
 # DIR.
 DIR="$(cd "$(dirname "$0")" && pwd)"
