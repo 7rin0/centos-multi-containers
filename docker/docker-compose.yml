@@ -5,14 +5,12 @@ networks:
   prodnetwork:
     driver: bridge
 
-# Volumes.
-
 # Services.
 services:
   # Application
   centos_application:
-    image: centos:7
-    command: bash /var/application/bootstrap.sh
+    build: ./containers/application
+    # command: bash /var/application/bootstrap.sh
     networks:
       - prodnetwork
     environment:
@@ -25,10 +23,11 @@ services:
     #depends_on:
     volumes:
       - ./containers/application:/var/application
+    container_name: centos_setup_application
   # Application
   centos_web_server:
-    image: centos:7
-    command: bash /var/web_server/bootstrap.sh
+    build: ./containers/web_server
+    # command: bash /var/web_server/bootstrap.sh
     networks:
       - prodnetwork
     environment:
@@ -43,10 +42,11 @@ services:
     #depends_on:
     volumes:
       - ./containers/web_server:/var/web_server
+    container_name: centos_setup_web_server
   # Search
   centos_search:
-    image: centos:7
-    command: bash /var/search/bootstrap.sh
+    build: ./containers/search
+    # command: bash /var/search/bootstrap.sh
     networks:
       - prodnetwork
     environment:
@@ -59,10 +59,11 @@ services:
     #depends_on:
     volumes:
       - ./containers/search:/var/search
+    container_name: centos_setup_search
   # Cache
   centos_cache:
-    image: centos:7
-    command: bash /var/cache/bootstrap.sh
+    build: ./containers/cache
+    # command: bash /var/cache/bootstrap.sh
     networks:
       - prodnetwork
     environment:
@@ -78,10 +79,11 @@ services:
     #depends_on:
     volumes:
       - ./containers/cache:/var/cache
+    container_name: centos_setup_cache
   # Database
   centos_database:
-    image: centos:7
-    command: bash /var/database/bootstrap.sh
+    build: ./containers/database
+    # command: bash /var/database/bootstrap.sh
     networks:
       - prodnetwork
     environment:
@@ -98,3 +100,21 @@ services:
     volumes:
       -  /var/lib/mysql
       - ./containers/database:/var/database
+    container_name: centos_setup_database
+  # Mail
+  centos_mail:
+    build: ./containers/mail
+    # command: bash /var/mail/bootstrap.sh
+    #ports:
+    networks:
+      - prodnetwork
+    environment:
+      container: docker
+    ports:
+      - "225:25"
+    expose:
+      - "25"
+    #depends_on:
+    volumes:
+      - ./containers/mail:/var/mail
+    container_name: centos_setup_mail

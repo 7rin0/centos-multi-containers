@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # Containers.
-CONTAINERS_NAME="docker_centos_cache_1 docker_centos_application_1 docker_centos_search_1 docker_centos_database_1"
+CONTAINERS_NAME="
+  centos_setup_cache
+  centos_setup_application
+  centos_setup_search
+  centos_setup_database
+  centos_setup_mail
+"
 
 # Stop all containers
 docker stop $CONTAINERS_NAME

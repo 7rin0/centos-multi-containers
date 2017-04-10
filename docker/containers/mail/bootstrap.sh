@@ -9,5 +9,8 @@ yum install vi vim -y
 # Install git.
 yum install git -y
 
+# Install postfix.
+# yum install git -y
+
 # Keep container running.
 tail -f /dev/null
