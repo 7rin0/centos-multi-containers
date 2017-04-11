@@ -12,6 +12,7 @@ RUN yum install git -y
 
 # Install postfix.
 # https://www.unixmen.com/setup-a-local-mail-server-in-centos-7/
+# http://www.inmotionhosting.com/support/email/bounceback-errors/email-error-554
 RUN yum install postfix -y
 RUN systemctl enable postfix
 COPY main.cf /etc/postfix/main.cf

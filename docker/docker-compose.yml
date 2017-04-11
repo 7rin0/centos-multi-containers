@@ -8,11 +8,14 @@ networks:
 # Services.
 services:
   # Application
-  centos_application:
+  centos_setup_application:
     build: ./containers/application
+    restart: always
     # command: bash /var/application/bootstrap.sh
     networks:
       - prodnetwork
+    links:
+      - centos_setup_mail
     environment:
       container: docker
     # ports:
@@ -25,8 +28,9 @@ services:
       - ./containers/application:/var/application
     container_name: centos_setup_application
   # Application
-  centos_web_server:
+  centos_setup_web_server:
     build: ./containers/web_server
+    restart: always
     # command: bash /var/web_server/bootstrap.sh
     networks:
       - prodnetwork
@@ -44,8 +48,9 @@ services:
       - ./containers/web_server:/var/web_server
     container_name: centos_setup_web_server
   # Search
-  centos_search:
+  centos_setup_search:
     build: ./containers/search
+    restart: always
     # command: bash /var/search/bootstrap.sh
     networks:
       - prodnetwork
@@ -61,8 +66,9 @@ services:
       - ./containers/search:/var/search
     container_name: centos_setup_search
   # Cache
-  centos_cache:
+  centos_setup_cache:
     build: ./containers/cache
+    restart: always
     # command: bash /var/cache/bootstrap.sh
     networks:
       - prodnetwork
@@ -81,8 +87,9 @@ services:
       - ./containers/cache:/var/cache
     container_name: centos_setup_cache
   # Database
-  centos_database:
+  centos_setup_database:
     build: ./containers/database
+    restart: always
     # command: bash /var/database/bootstrap.sh
     networks:
       - prodnetwork
@@ -102,8 +109,9 @@ services:
       - ./containers/database:/var/database
     container_name: centos_setup_database
   # Mail
-  centos_mail:
+  centos_setup_mail:
     build: ./containers/mail
+    restart: always
     # command: bash /var/mail/bootstrap.sh
     #ports:
     networks:

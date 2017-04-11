@@ -1,0 +1,7 @@
+From: noreply@centos-setup.local
+To: lseverino@ausy-group.com,
+    lfs.severino@gmail.com
+Subject: Postfix successfully installed
+
+Contenu 1
+Contenu 2
