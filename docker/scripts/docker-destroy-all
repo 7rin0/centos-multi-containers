@@ -11,7 +11,9 @@ CONTAINERS_NAME="
 
 # Stop all containers
 docker stop $CONTAINERS_NAME
+
 # Delete all containers
 docker rm -f $CONTAINERS_NAME
+
 # Delete all images
-docker rmi -f $CONTAINERS_NAME
+# docker rmi -f $CONTAINERS_NAME
