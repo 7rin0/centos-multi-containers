@@ -1,2 +1,4 @@
 containers/*/*
 !/containers/*/bootstrap.sh
+!/containers/*/Dockerfile
+!/containers/*/main.cf
