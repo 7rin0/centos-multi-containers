@@ -23,7 +23,8 @@ services:
     #   - "280:80"
     # expose:
     #   - "80"
-    #depends_on:
+    depends_on:
+      - centos_setup_mail
     volumes:
       - ./containers/application:/var/application
       - ./containers/centos_setup:/var/centos_setup
