@@ -15,7 +15,7 @@ services:
     networks:
       - prodnetwork
     links:
-      - centos_setup_mail
+      - centos_setup_mail:centos_setup_mail
     environment:
       container: docker
     # ports:
