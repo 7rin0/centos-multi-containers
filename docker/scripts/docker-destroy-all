@@ -1,20 +1,7 @@
 #!/bin/bash
 
-# Containers.
-CONTAINERS_NAME="
-  centos_setup_cache
-  centos_setup_application
-  centos_setup_search
-  centos_setup_database
-  centos_setup_mail
-  centos_setup_web_server
-"
-
 # Stop all containers
-docker stop $CONTAINERS_NAME
+docker-compose stop
 
 # Delete all containers
-docker rm -f $CONTAINERS_NAME
-
-# Delete all images
-# docker rmi -f $CONTAINERS_NAME
+docker-compose rm -f

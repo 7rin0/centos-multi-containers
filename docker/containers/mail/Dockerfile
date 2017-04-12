@@ -17,5 +17,8 @@ RUN yum install postfix -y
 RUN systemctl enable postfix
 COPY main.cf /etc/postfix/main.cf
 
+# Copy default bashrc file to container.
+COPY .bashrc /root/.bashrc
+
 # Keep container running.
 ENTRYPOINT ["/var/mail/bootstrap.sh"]

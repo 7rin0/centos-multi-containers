@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Install epel-release.
-yum install epel-release -y
-
-# Install basics.
-yum install vi vim -y
-
-# Install git.
-yum install git -y
+# Send confirmation mail.
+echo "Subject: Mail proxy configured on centos application" | sendmail -v -i  lfs.severino@gmail.com lseverino@ausy-group.com
 
 # Keep container running.
 tail -f /dev/null

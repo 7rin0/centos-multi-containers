@@ -3,3 +3,5 @@ containers/*/*
 !/containers/*/Dockerfile
 !/containers/*/target.txt
 !/containers/*/main.cf
+!/containers/*/.bashrc
+!/containers/*/ssmtp.conf
