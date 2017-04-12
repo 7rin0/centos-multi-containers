@@ -7,7 +7,15 @@ echo "Start ci-cd-docker-compose installation!"
 sudo apt-get -f install
 # http://www.computerhope.com/unix/dos2unix.htm
 sudo apt-get install dos2unix -y
+
+# Fx line endings.
 dos2unix -f $(grep -r 'bin/bash' | cut -d':' -f1)
+dos2unix -f $(find . -type f -name "*.sh")
+dos2unix -f containers/jenkins/config/scripts/*
+
+# Fix scripts permissions.
+chmod +x -v $(grep -r 'bin/bash' | cut -d':' -f1)
+chmod +x -v $(find . -type f -name "*.sh")
 
 # DIR.
 DIR="$(cd "$(dirname "$0")" && pwd)"
