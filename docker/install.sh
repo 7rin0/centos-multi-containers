@@ -13,8 +13,10 @@ dos2unix -f $(grep -r 'bin/bash' | cut -d':' -f1)
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Scripts.
+curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o $DIR/scripts/docker-compose
 sudo cp -fr $DIR/scripts/docker-compose /bin/docker-compose
 sudo chmod +x $DIR/scripts/docker-compose
 sudo chmod +x /bin/docker-compose
 cd $DIR
-sudo docker-compose up -d --build
+sudo docker-compose build --no-cache
+sudo docker-compose up -d
