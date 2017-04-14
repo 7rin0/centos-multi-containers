@@ -23,4 +23,4 @@ RUN yum -y install memcached
 RUN /usr/bin/memcached -d -p 11211 -u memcached -m 64 -c 1024
 
 # Keep container running.
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["/var/cache/bootstrap.sh"]

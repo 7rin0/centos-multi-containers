@@ -27,7 +27,7 @@ services:
       - centos_setup_mail
     volumes:
       - ./containers/application:/var/application
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_application
   # Application
   centos_setup_web_server:
@@ -45,10 +45,12 @@ services:
     expose:
       - "80"
       - "8080"
-    #depends_on:
+    depends_on:
+      - centos_setup_mail
+      - centos_setup_application
     volumes:
       - ./containers/web_server:/var/web_server
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_web_server
   # Search
   centos_setup_search:
@@ -67,7 +69,7 @@ services:
     #depends_on:
     volumes:
       - ./containers/search:/var/search
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_search
   # Cache
   centos_setup_cache:
@@ -89,7 +91,7 @@ services:
     #depends_on:
     volumes:
       - ./containers/cache:/var/cache
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_cache
   # Database
   centos_setup_database:
@@ -112,7 +114,7 @@ services:
     volumes:
       -  /var/lib/mysql
       - ./containers/database:/var/database
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_database
   # Mail
   centos_setup_mail:
@@ -131,5 +133,5 @@ services:
     #depends_on:
     volumes:
       - ./containers/mail:/var/mail
-      - ./containers/centos_setup:/var/centos_setup
+      - ./containers/application/html:/var/www/html
     container_name: centos_setup_mail

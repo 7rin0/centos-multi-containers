@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Install epel-release.
-yum install epel-release -y
-
-# Install basics.
-yum install vi vim -y
-
-# Install git.
-yum install git -y
+# Start httpd service.
+/usr/sbin/httpd -k start
 
 # Keep container running.
 tail -f /dev/null
