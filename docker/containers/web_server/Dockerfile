@@ -1,7 +1,5 @@
 FROM centos:7
 
-
-
 # Install epel-release.
 RUN yum install epel-release -y
 
@@ -12,7 +10,7 @@ RUN yum install wget curl -y
 RUN yum install vi vim -y
 
 # Install telnet.
-RUN yum install telnet -y
+RUN yum install net-tools telnet -y
 
 # Install git.
 RUN yum install git -y
