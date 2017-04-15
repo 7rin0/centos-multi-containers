@@ -103,7 +103,8 @@ services:
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: centos_setup_database
       container: docker
     ports:
       # MySQL.

@@ -5,5 +5,6 @@ containers/*/*
 !/containers/*/main.cf
 !/containers/*/.bashrc
 !/containers/*/ssmtp.conf
-!containers/application/html/.gitkeep
-!containers/application/scripts/
+!/containers/application/html/.gitkeep
+!/containers/application/scripts/
+!/containers/web_server/httpd.conf
