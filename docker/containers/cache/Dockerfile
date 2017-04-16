@@ -10,7 +10,7 @@ RUN yum install wget curl -y
 RUN yum install vi vim -y
 
 # Install telnet.
-RUN yum install net-tools telnet -y
+RUN yum install net-tools telnet sudo -y
 
 # Install varnish.
 # http://www.servermom.org/install-varnish-4-lamp-centos-7/1972/

@@ -473,6 +473,13 @@ if ($settings['hash_salt']) {
 }
 */
 
+# Cache by Memcache.
+$settings['memcache']['servers'] = ['centos_setup_cache:11211' => 'default'];
+$settings['memcache']['bins'] = ['default' => 'default'];
+$settings['memcache']['key_prefix'] = 'centos_drupal8';
+$settings['cache']['default'] = 'cache.backend.memcache';
+$settings['cache']['bins']['render'] = 'cache.backend.memcache';
+
 /**
  * Authorized file system operations:
  *

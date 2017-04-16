@@ -11,3 +11,4 @@ containers/*/*
 !/containers/*/settings.php
 !/containers/*/varnish.params
 !/containers/*/default.vcl
+!/containers/*/composer*
