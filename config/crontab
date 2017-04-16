@@ -1,6 +1,0 @@
-# CRONTAB CONFIG
-# Ajouter les configs suivants crontab root en passant par la commande: crontab -e
-
-*/5 * * * * sync; echo 3 > /proc/sys/vm/drop_caches
-*/10 * * * * cd /var/www/html/ixarm_recette/web; drush cron
-0 0 * * * cd /var/www/html/ixarm_recette/IxarmMIN/scripts/operations; bash backup_database_ixarm.sh
