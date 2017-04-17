@@ -21,18 +21,24 @@ RUN yum install ssmtp -y
 # Copy ssmtp config.
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 
-# Install apache.
+# Install apache OR nginx.
 RUN yum install httpd -y
+RUN yum install nginx -y
+RUN systemctl enable nginx
+RUN systemctl enable php-fpm
 
 # Install PHP interpreter.
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 RUN yum install php70w -y
 RUN yum install php70w-mysql php70w-xml php70w-soap php70w-xmlrpc -y
 RUN yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt -y
-RUN yum install php70w-pecl-memcached -y
+RUN yum install php70w-pecl-memcached php70w-fpm -y
 
 # Update httpd config.
-COPY httpd.conf /etc/httpd/conf/httpd.conf
+COPY apache/httpd.conf /etc/httpd/conf/httpd.conf
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/nginx.conf.default /etc/nginx/
+COPY nginx/drupal8.conf /etc/nginx/conf.d/
 
 # Keep container running.
 ENTRYPOINT ["/var/web_server/bootstrap.sh"]

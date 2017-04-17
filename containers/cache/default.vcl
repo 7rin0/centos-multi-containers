@@ -61,7 +61,7 @@ sub vcl_recv {
   # Always cache the following file types for all users. This list of extensions
   # appears twice, once here and again in vcl_fetch so make sure you edit both
   # and keep them equal.
-  if (req.url ~ "(?i)\.(pdf|asc|dat|txt|doc|xls|ppt|tgz|csv|png|gif|jpeg|jpg|ico|swf|css|js)(\?.*)?$") {
+  if (req.url ~ "(?i)\.(pdf|asc|dat|txt|doc|xls|ppt|tgz|csv|svg|png|gif|jpeg|jpg|ico|swf|css|js)(\?.*)?$") {
     unset req.http.Cookie;
   }
 
