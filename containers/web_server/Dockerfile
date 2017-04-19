@@ -25,7 +25,6 @@ COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 RUN yum install httpd -y
 RUN yum install nginx -y
 RUN systemctl enable nginx
-RUN systemctl enable php-fpm
 
 # Install PHP interpreter.
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
@@ -33,6 +32,9 @@ RUN yum install php70w -y
 RUN yum install php70w-mysql php70w-xml php70w-soap php70w-xmlrpc -y
 RUN yum install php70w-mbstring php70w-json php70w-gd php70w-mcrypt -y
 RUN yum install php70w-pecl-memcached php70w-fpm -y
+
+# Enable php-fpm.
+RUN systemctl enable php-fpm
 
 # Update httpd config.
 COPY apache/httpd.conf /etc/httpd/conf/httpd.conf
