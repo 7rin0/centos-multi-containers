@@ -4,10 +4,21 @@ version: '2'
 networks:
   prodnetwork:
     driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "false"
     ipam:
-     config:
-       - subnet: 172.95.0.0/16
-         gateway: 172.95.0.1
+      driver: default
+      config:
+        - subnet: 172.95.59.0/24
+          gateway: 172.95.59.1
+          aux_addresses:
+           centos_setup_application: 172.95.59.2
+           centos_setup_web_server: 172.95.59.3
+           centos_setup_search: 172.95.59.4
+           centos_setup_cache: 172.95.59.5
+           centos_setup_database: 172.95.59.6
+           centos_setup_mail: 172.95.59.7
 
 # Services.
 services:
@@ -17,8 +28,7 @@ services:
     restart: always
     # command: bash /var/application/bootstrap.sh
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.1
+      - prodnetwork
     # links:
     #   - centos_setup_mail:centos_setup_mail
     environment:
@@ -40,8 +50,7 @@ services:
     restart: always
     # command: bash /var/web_server/bootstrap.sh
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.2
+      - prodnetwork
     environment:
       container: docker
     ports:
@@ -64,8 +73,7 @@ services:
     restart: always
     # command: bash /var/search/bootstrap.sh
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.3
+      - prodnetwork
     environment:
       container: docker
     ports:
@@ -84,8 +92,7 @@ services:
     restart: always
     # command: bash /var/cache/bootstrap.sh
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.4
+      - prodnetwork
     environment:
       container: docker
     ports:
@@ -107,8 +114,7 @@ services:
     restart: always
     # command: bash /var/database/bootstrap.sh
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.5
+      - prodnetwork
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
@@ -133,8 +139,7 @@ services:
     # command: bash /var/mail/bootstrap.sh
     #ports:
     networks:
-      prodnetwork:
-        ipv4_address: 172.95.0.6
+      - prodnetwork
     environment:
       container: docker
     ports:
