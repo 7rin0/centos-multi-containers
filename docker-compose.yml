@@ -4,6 +4,10 @@ version: '2'
 networks:
   prodnetwork:
     driver: bridge
+    ipam:
+     config:
+       - subnet: 172.95.0.0/16
+         gateway: 172.95.0.1
 
 # Services.
 services:
@@ -13,7 +17,8 @@ services:
     restart: always
     # command: bash /var/application/bootstrap.sh
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.1
     # links:
     #   - centos_setup_mail:centos_setup_mail
     environment:
@@ -35,7 +40,8 @@ services:
     restart: always
     # command: bash /var/web_server/bootstrap.sh
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.2
     environment:
       container: docker
     ports:
@@ -58,7 +64,8 @@ services:
     restart: always
     # command: bash /var/search/bootstrap.sh
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.3
     environment:
       container: docker
     ports:
@@ -77,7 +84,8 @@ services:
     restart: always
     # command: bash /var/cache/bootstrap.sh
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.4
     environment:
       container: docker
     ports:
@@ -99,7 +107,8 @@ services:
     restart: always
     # command: bash /var/database/bootstrap.sh
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.5
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
@@ -124,7 +133,8 @@ services:
     # command: bash /var/mail/bootstrap.sh
     #ports:
     networks:
-      - prodnetwork
+      prodnetwork:
+        ipv4_address: 172.95.0.6
     environment:
       container: docker
     ports:
