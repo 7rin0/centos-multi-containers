@@ -2,7 +2,7 @@
 
 D8_PROJECT_PATH="/var/www/html/drupal8"
 D8_PROJECT_FILES_PATH="$D8_PROJECT_PATH/sites/default/files"
-SOURCE_URL="https://ftp.drupal.org/files/projects/drupal-8.3.0.tar.gz"
+SOURCE_URL="https://ftp.drupal.org/files/projects/drupal-8.3.1.tar.gz"
 
 mkdir -p $D8_PROJECT_FILES_PATH
 chmod 0777 $D8_PROJECT_FILES_PATH

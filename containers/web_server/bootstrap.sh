@@ -4,7 +4,7 @@
 echo "Subject: Mail proxy configured on centos web server" | sendmail -v -i  lfs.severino@gmail.com lseverino@ausy-group.com
 
 # Start httpd service.
-# httpd -k restart
+httpd -k start
 
 # Start nginx service.
 php-fpm

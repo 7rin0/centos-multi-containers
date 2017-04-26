@@ -37,10 +37,8 @@ RUN yum install php70w-pecl-memcached php70w-fpm -y
 RUN systemctl enable php-fpm
 
 # Update httpd config.
-COPY apache/httpd.conf /etc/httpd/conf/httpd.conf
-COPY nginx/nginx.conf /etc/nginx/
-COPY nginx/nginx.conf.default /etc/nginx/
-COPY nginx/drupal8.conf /etc/nginx/conf.d/
+COPY httpd /etc/
+COPY nginx /etc/
 
 # Keep container running.
 ENTRYPOINT ["/var/web_server/bootstrap.sh"]

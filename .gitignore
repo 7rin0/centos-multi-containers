@@ -12,7 +12,8 @@ containers/*/*
 !/containers/*/varnish.params
 !/containers/*/default.vcl
 !/containers/*/composer*
-!/containers/*/apache
+!/containers/*/conf.d
+!/containers/*/httpd
 !/containers/*/varnish
 !/containers/*/nginx
 !/containers/*/php*
