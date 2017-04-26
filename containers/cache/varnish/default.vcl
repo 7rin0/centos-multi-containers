@@ -22,7 +22,9 @@ import directors;
 
 backend drupal8 {
   .host = "centos_setup_web_server";
-  .port = "8080";
+  # centos_setup_web_server:80|172.95.59.1:280 NGINX
+  # centos_setup_web_server:8080|172.95.59.1:28080 APACHE
+  .port = "80";
 }
 
 # Define the director that determines how to distribute incoming requests.

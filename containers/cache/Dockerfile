@@ -22,5 +22,7 @@ RUN systemctl enable varnish
 # http://lzone.de/cheat-sheet/memcached
 RUN yum -y install memcached
 
+COPY varnish /etc/
+
 # Keep container running.
 ENTRYPOINT ["/var/cache/bootstrap.sh"]
