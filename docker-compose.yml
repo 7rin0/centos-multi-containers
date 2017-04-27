@@ -82,6 +82,8 @@ services:
     ports:
       # SOLR.
       - "18983:8983"
+    depends_on:
+      - centos_setup_application
     expose:
       - "8983"
     #depends_on:
